@@ -2,3 +2,4 @@
 - JSON endpoint for posting logs
 - Filter logs by sensor
 - Log chart visualization
+- Sensor pagination and filtering

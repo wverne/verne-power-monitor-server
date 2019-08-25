@@ -6,6 +6,7 @@ Collects and visualizes power monitor logs. See [todo.txt](todo.txt) for a list 
 - [Apps](#apps)
 
 ## Setup (local)
+Instructions are for a Unix system. Commands must be run from the repository base directory.
 - `python3 -m venv env`
 - `source env/bin/activate`
 - `pip install -r requirements.txt`
