@@ -1,0 +1,4 @@
+- Sensor deletion
+- JSON endpoint for posting logs
+- Filter logs by sensor
+- Log chart visualization

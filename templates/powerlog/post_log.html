@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block contents %}
+
+  <h1>Post new power log</h1>
+
+  <br>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="inputSensor">Sensor</label>
+      <select class="form-control" required
+             id="inputSensor" name="sensor">
+        {% for sensor in sensors %}
+          <option value="{{ sensor.id }}" {% if form.sensor.value == sensor.id %}selected{% endif %}>{{ sensor.name }}</option>
+        {% endfor %}
+      </select>
+      {% if form.errors.sensor %}
+        <small class="form-text text-danger">{{ form.errors.sensor.0 }}</small>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label for="inputNetworkSSID">Network SSID</label>
+      <input class="form-control"
+             type="text" maxlength="127" required
+             id="inputNetworkSSID" name="network_ssid"
+             {% if form.network_ssid.value %}value="{{ form.network_ssid.value }}"{% endif %}>
+      {% if form.errors.network_ssid %}
+        <small class="form-text text-danger">{{ form.errors.network_ssid.0 }}</small>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label for="inputLocalIP">Local IP Address</label>
+      <input class="form-control"
+             type="text" required
+             id="inputLocalIP" name="network_local_ip"
+             {% if form.network_local_ip.value %}value="{{ form.network_local_ip.value }}"{% endif %}>
+      {% if form.errors.network_local_ip %}
+        <small class="form-text text-danger">{{ form.errors.network_local_ip.0 }}</small>
+      {% endif %}
+    </div>
+    {% if form.is_valid %}
+      <p class="text-success">Log submitted successfully</p>
+    {% elif form.is_bound %}
+      <p class="text-danger">Log failed</p>
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+{% endblock %}

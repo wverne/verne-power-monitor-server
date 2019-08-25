@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block contents %}
+
+  <h1>Latest power log</h1>
+
+  <br>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th scope="row">Network</th>
+        <td>{{ latest_power_log.network_ssid }}</td>
+      </tr>
+      <tr>
+        <th scope="row">IP</th>
+        <td>{{ latest_power_log.network_local_ip }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Timestamp</th>
+        <td>{{ latest_power_log.timestamp }} UTC</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

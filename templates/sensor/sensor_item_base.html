@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block contents %}
+
+  <h1>{% block page_title %}{% endblock %}</h1>
+
+  <br>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="inputName">Name</label>
+      <input class="form-control"
+             type="text" maxlength="127" required
+             id="inputName" name="name"
+             {% if form.name.value %}value="{{ form.name.value }}"{% endif %}>
+      {% if form.errors.name %}
+        <small class="form-text text-danger">{{ form.errors.name.0 }}</small>
+      {% endif %}
+    </div>
+    {% if form.is_valid %}
+      <p class="text-success">{% block success_message %}{% endblock %}</p>
+    {% elif form.is_bound %}
+      <p class="text-danger">{% block failure_message %}{% endblock %}</p>
+    {% endif %}
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="btn btn-primary">
+          {% block submit_button_text %}{% endblock %}
+        </button>
+      </div>
+      <div class="col" style="text-align:right">
+        <a href="/sensors/" class="btn btn-secondary">Back</a>
+      </div>
+    </div>
+  </form>
+
+{% endblock %}
