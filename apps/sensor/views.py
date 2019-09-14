@@ -77,12 +77,14 @@ def delete_sensor(request, sensor_id):
     Allow a sensor to be deleted.
     """
     sensor = get_object_or_404(Sensor, id=sensor_id)
+    sensor_logs = PowerLog.objects.filter(sensor=sensor)
 
     if request.method == 'POST':
-        PowerLog.objects.filter(sensor=sensor).delete()
-        Sensor.delete()
+        sensor_logs.delete()
+        sensor.delete()
         return redirect(list_sensors)
 
     return render(request, 'sensor/sensor_delete.html', {
-        'sensor': sensor
+        'sensor': sensor,
+        'sensor_logs_count': sensor_logs.count()
     })

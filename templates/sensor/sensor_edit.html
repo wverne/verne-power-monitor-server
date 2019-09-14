@@ -2,6 +2,14 @@
 
 {% block page_title %}Edit sensor{% endblock %}
 
+{% block additional_header_column %}
+  <div class="col" style="text-align:right">
+    <a href="/sensors/delete/{{ sensor.id }}/" class="btn btn-danger">
+      Delete
+    </a>
+  </div>
+{% endblock %}
+
 {% block success_message %}Sensor edited{% endblock %}
 
 {% block failure_message %}Sensor edit failed{% endblock %}

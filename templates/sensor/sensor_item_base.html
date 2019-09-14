@@ -2,7 +2,12 @@
 
 {% block contents %}
 
-  <h1>{% block page_title %}{% endblock %}</h1>
+  <div class="row">
+    <div class="col">
+      <h1>{% block page_title %}{% endblock %}</h1>
+    </div>
+    {% block additional_header_column %}{% endblock %}
+  </div>
 
   <br>
 

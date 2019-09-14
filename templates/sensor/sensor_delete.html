@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block contents %}
+
+  <div class="row">
+    <div class="col">
+      <p>Please confirm that you intend to delete sensor {{ sensor.name }} (ID {{ sensor.id }}). <b>This action cannot be undone.</b></p>
+      {% if sensor_logs_count %}
+        <p>This sensor has {{ sensor_logs_count }} log{{ sensor_logs_count|pluralize }}, which will also be deleted.</p>
+      {% else %}
+        <p>This sensor has no logs.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <br>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </div>
+      <div class="col" style="text-align:right">
+        <a href="/sensors/" class="btn btn-secondary">Back</a>
+      </div>
+    </div>
+  </form>
+
+{% endblock %}
