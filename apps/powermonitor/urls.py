@@ -21,14 +21,14 @@ from ..powerlog import views as powerlog_views
 from ..sensor import views as sensor_views
 
 urlpatterns = [
-    path('', powerlog_views.index),
-    path('latest/', powerlog_views.latest_log),
+    path('', sensor_views.index),
     path('post/', powerlog_views.post_log),
     path('recent/', powerlog_views.recent_logs),
 
     path('sensors/', sensor_views.list_sensors),
     path('sensors/create/', sensor_views.create_sensor),
     path('sensors/edit/<int:sensor_id>/', sensor_views.edit_sensor),
+    path('sensors/delete/<int:sensor_id>/', sensor_views.delete_sensor),
 
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

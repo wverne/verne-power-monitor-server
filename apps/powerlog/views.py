@@ -12,26 +12,6 @@ from .models import PowerLog
 
 
 @login_required
-def index(request):
-    """
-    Display the homepage. Redirects to latest_log for now.
-    """
-    return redirect(latest_log)
-
-
-@login_required
-@require_GET
-def latest_log(request):
-    """
-    Display the information contained in the latest power log.
-    """
-    latest_power_log = PowerLog.objects.order_by('-timestamp').first()
-    return render(request, 'powerlog/latest_log.html', {
-        'latest_power_log': latest_power_log
-    })
-
-
-@login_required
 def post_log(request):
     """
     Allow users to post new power logs to the server.

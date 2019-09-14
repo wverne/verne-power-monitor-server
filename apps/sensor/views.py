@@ -12,6 +12,14 @@ from .models import Sensor
 
 
 @login_required
+def index(request):
+    """
+    Display the homepage. Redirects to list_sensors for now.
+    """
+    return redirect(list_sensors)
+
+
+@login_required
 @require_GET
 def list_sensors(request):
     """
