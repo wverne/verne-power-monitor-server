@@ -26,7 +26,7 @@ urlpatterns = [
     path('recent/', powerlog_views.recent_logs),
 
     path('sensors/', sensor_views.list_sensors),
-    path('sensors/create/', sensor_views.create_sensor),
+    path('sensors/register/', sensor_views.create_sensor),
     path('sensors/edit/<int:sensor_id>/', sensor_views.edit_sensor),
     path('sensors/delete/<int:sensor_id>/', sensor_views.delete_sensor),
 
