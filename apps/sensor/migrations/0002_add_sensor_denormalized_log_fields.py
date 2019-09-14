@@ -13,7 +13,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='sensor',
             name='latest_network_local_ip',
-            field=models.GenericIPAddressField(default=None, null=True, protocol='IPv4'),
+            field=models.GenericIPAddressField(default=None,
+                                               null=True,
+                                               protocol='IPv4'),
         ),
         migrations.AddField(
             model_name='sensor',

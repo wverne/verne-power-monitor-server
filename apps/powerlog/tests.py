@@ -10,11 +10,13 @@ from .models import PowerLog
 
 class DenormalizedSensorLogFieldsTestCase(TestCase):
     """
-    A suite of tests concerning the denormalized log fields on the Sensor model.
+    A suite of tests concerning the denormalized log fields on the Sensor
+    model.
     """
     def test_fields_updated_on_log_create(self):
         """
-        Ensure that the Sensor denormalized log fields are updated when a PowerLog is created.
+        Ensure that the Sensor denormalized log fields are updated when a
+        PowerLog is created.
         """
         # Create two test sensors
         sensor_to_log = Sensor.objects.create(

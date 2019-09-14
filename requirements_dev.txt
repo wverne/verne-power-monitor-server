@@ -1,0 +1,4 @@
+# Requirements for local development and testing
+-r requirements.txt
+
+pycodestyle
