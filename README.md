@@ -3,6 +3,7 @@
 Collects and visualizes power monitor logs. See [todo.txt](todo.txt) for a list of outstanding tasks.
 
 - [Setup (local)](#setup-local)
+- [Testing](#test)
 - [Apps](#apps)
 
 ## Setup (local)
@@ -13,6 +14,9 @@ Instructions are for a Unix system. Commands must be run from the repository bas
 - `python manage.py migrate`
 - (optional) `python manage.py createsuperuser`
 - `python manage.py runserver`
+
+## Testing
+Run the unit tests with `python manage.py test`.
 
 ## Apps
 - [powermonitor](apps/powermonitor): The base app for the project. Contains project-wide code, including the settings and urls files.
