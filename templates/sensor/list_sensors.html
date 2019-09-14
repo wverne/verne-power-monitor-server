@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 
+{% block style %}
+<style>
+  td.unknown-value {
+    color: #777777;
+  }
+  td.button-col {
+    padding: .25rem;
+    text-align: right;
+  }
+</style>
+{% endblock %}
+
 {% block contents %}
 
   <div class="row">
@@ -19,7 +31,10 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Created At</th>
+        {# "Created at" is hidden on SM and XS screens #}
+        <th class="d-none d-md-table-cell">Created at</th>
+        <th>Latest SSID</th>
+        <th>Latest IP</th>
         <th></th>
       </tr>
     </thead>
@@ -27,12 +42,23 @@
       {% for sensor in sensors %}
         <tr>
           <td>{{ sensor.name }}</td>
-          <td>{{ sensor.created_at }} UTC</td>
-          <td><a href="/sensors/edit/{{ sensor.id }}/">Edit</a></td> {# TODO: Make button #}
+          <td class="d-none d-md-table-cell">{{ sensor.created_at }} UTC</td>
+          {% if sensor.latest_network_ssid %}
+            <td>{{ sensor.latest_network_ssid }}</td>
+          {% else %}
+            <td class="unknown-value">Unknown</td>
+          {% endif %}
+          {% if sensor.latest_network_local_ip %}
+            <td>{{ sensor.latest_network_local_ip }}</td>
+          {% else %}
+            <td class="unknown-value">Unknown</td>
+          {% endif %}
+          <td class="button-col"><a href="/sensors/edit/{{ sensor.id }}/" class="btn btn-primary">Edit</a></td>
         </tr>
       {% empty %}
         <tr>
-          <td colspan="3">No sensors</td>
+          <td colspan="5" class="d-none d-md-table-cell">No sensors</td>
+          <td colspan="4" class="d-table-cell d-md-none">No sensors</td>
         </tr>
       {% endfor %}
     </tbody>

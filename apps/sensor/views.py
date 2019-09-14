@@ -2,8 +2,10 @@ import datetime
 import pytz
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_GET
+
+from ..powerlog.models import PowerLog
 
 from .forms import SensorForm
 from .models import Sensor
@@ -56,5 +58,23 @@ def edit_sensor(request, sensor_id):
         form = SensorForm(instance=sensor)
 
     return render(request, 'sensor/sensor_edit.html', {
+        'sensor': sensor,
         'form': form
+    })
+
+
+@login_required
+def delete_sensor(request, sensor_id):
+    """
+    Allow a sensor to be deleted.
+    """
+    sensor = get_object_or_404(Sensor, id=sensor_id)
+
+    if request.method == 'POST':
+        PowerLog.objects.filter(sensor=sensor).delete()
+        Sensor.delete()
+        return redirect(list_sensors)
+
+    return render(request, 'sensor/sensor_delete.html', {
+        'sensor': sensor
     })
