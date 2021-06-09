@@ -1,2 +1,2 @@
 # Requirements for production
-django==2.2.4
+django==2.2.22
